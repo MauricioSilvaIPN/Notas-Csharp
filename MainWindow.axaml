@@ -9,13 +9,13 @@
         <StackPanel>
 
             <UserControl Padding="20" HorizontalAlignment="Center">
-                <Button Click="CreateNewNote"> Criar lista </Button>
+                <Button Click="CreateNewNote"> Criar nota </Button>
             </UserControl>
 
 
             <StackPanel>
-                <Grid x:Name="ContainerNotes" ColumnDefinitions="Auto, *">
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <Grid x:Name="ContainerNotes" ColumnDefinitions="Auto, *, Auto">
+                    <StackPanel Grid.Column="0" x:Name="Notes" Orientation="Vertical" HorizontalAlignment="Center">
                         <TextBox x:Name="Title" Width="300"></TextBox>
                         <TextBox x:Name="Content" Width="300" Height="450"></TextBox>
                     </StackPanel>
