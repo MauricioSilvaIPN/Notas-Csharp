@@ -7,7 +7,7 @@ namespace Notas_Csharp;
 public partial class MainWindow : Window
 {
     private int columnIndex = 1;
-    private int rowIndex = 1;
+    private int rowIndex = 0;
 
     public MainWindow()
     {
@@ -22,7 +22,7 @@ public partial class MainWindow : Window
             Orientation = Avalonia.Layout.Orientation.Vertical,
             HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
             Name = "Notes",
-            Margin = new Avalonia.Thickness(0, 0, 15, 0)
+            Margin = new Avalonia.Thickness(0, 0, 15, 15)
         };
 
         var newTitle = new TextBox()
@@ -40,20 +40,21 @@ public partial class MainWindow : Window
 
         ContainerNotes.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
 
-        if (columnIndex >= 4)
+        if (columnIndex < 3)
         {
+            Grid.SetColumn(newStack, columnIndex);
             Grid.SetRow(newStack, rowIndex);
-            rowIndex++;
-            columnIndex = 0;
         }
         else
         {
+            rowIndex++;
+            columnIndex = 0;
+
+            Grid.SetRow(newStack, rowIndex);
             Grid.SetColumn(newStack, columnIndex);
-            columnIndex++;
         }
 
-        Console.WriteLine(columnIndex);
-        Console.WriteLine(rowIndex);
+        columnIndex++;
 
         ContainerNotes.Children.Add(newStack);
 
