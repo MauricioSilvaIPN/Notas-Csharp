@@ -28,14 +28,16 @@ public partial class MainWindow : Window
         var newTitle = new TextBox()
         {
             Name = "Title",
-            Width = 300
+            Width = 300,
+            PlaceholderText = "Insira um título para sua nota..."
         };
 
         var newContent = new TextBox()
         {
             Name = "Content",
             Width = 300,
-            Height = 450
+            Height = 450,
+            PlaceholderText = "Insira qualquer informação aqui..."
         };
 
         ContainerNotes.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
