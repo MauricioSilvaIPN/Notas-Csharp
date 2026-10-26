@@ -8,36 +8,51 @@ namespace SaveLoad;
 
 public class CardsContent
 {
-    public string? GetTitleCard { get; set; }
-    public string? GetContentCard { get; set; }
+    public string? TitleCard { get; set; }
+    public string? ContentCard { get; set; }
 }
 
 
 public class JsonSave
 {
-    public void SavingData(TextBox titleRef, TextBox contentRef)
+    string fileName = "savingData.json";
+
+    public void SavingData(string titleRef, string contentRef)
     {
+        //List<CardsContent> cardsContent = new List<CardsContent>();
+
         var cardsContent = new CardsContent()
         {
-            GetTitleCard = titleRef.Text,
-            GetContentCard = contentRef.Text
+            TitleCard = titleRef,
+            ContentCard = contentRef
         };
 
-        string fileName = "savingData.json";
         string jsonString = JsonSerializer.Serialize(cardsContent);
         File.WriteAllText(fileName, jsonString);
 
         Console.WriteLine(File.ReadAllText(fileName));
     }
 
-    public void LoadData(TextBox titleRef, TextBox contentRef)
+    public void LoadData(string titleRef, string contentRef)
     {   
-
-
-        var cardsContent = new CardsContent()
+        if (File.Exists(fileName))
         {
-            GetTitleCard = "",
-            GetContentCard = "" 
-        };
+            Console.WriteLine(File.ReadAllText(fileName));
+
+            var fileContent = File.ReadAllText(fileName);
+
+            string[] separateString = fileContent.Split(":");
+            string prefix = separateString[0];
+
+            Console.WriteLine(prefix);
+
+            
+            /*var cardsContent = new CardsContent()
+            {
+                //TitleCard = "",
+                //ContentCard = "" 
+            };*/
+        }
+
     }
 }

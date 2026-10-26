@@ -63,5 +63,23 @@ public partial class MainWindow : Window
 
         newStack.Children.Add(newTitle);
         newStack.Children.Add(newContent);
+
+        ShowData();
+        
+    }
+
+
+    private void ShowData()
+    {
+        var cardsContainer = new CardsContent()
+        {
+            TitleCard = Title.Text,
+            ContentCard = Content.Text
+        };
+
+        var dataJson = new JsonSave();
+        
+
+        dataJson.LoadData(cardsContainer.TitleCard, cardsContainer.ContentCard);
     }
 }
