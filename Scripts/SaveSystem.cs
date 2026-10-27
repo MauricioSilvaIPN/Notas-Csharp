@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Avalonia.Controls;
+using System.Collections.Generic;
 using System;
 using System.IO;
 
@@ -16,6 +17,7 @@ public class CardsContent
 public class JsonSave
 {
     string fileName = "savingData.json";
+    Dictionary<string, string> myDictionary = new Dictionary<string, string>();
 
     public void SavingData(string titleRef, string contentRef)
     {
@@ -33,25 +35,29 @@ public class JsonSave
         Console.WriteLine(File.ReadAllText(fileName));
     }
 
-    public void LoadData(string titleRef, string contentRef)
-    {   
+    public void LoadData(TextBox titleRef, TextBox contentRef)
+    {
         if (File.Exists(fileName))
         {
-            Console.WriteLine(File.ReadAllText(fileName));
-
             var fileContent = File.ReadAllText(fileName);
 
-            string[] separateString = fileContent.Split(":");
-            string prefix = separateString[0];
-
-            Console.WriteLine(prefix);
-
-            
-            /*var cardsContent = new CardsContent()
+            if (fileContent.Contains(','))
             {
-                //TitleCard = "",
-                //ContentCard = "" 
-            };*/
+                string[] firstSeparate = fileContent.Split(",");
+                
+                for(int i = 0; i < firstSeparate.Length; i++)
+                {
+                    string[] parts = firstSeparate[i].Split(":");
+                    string prefix = parts[0].Trim( new Char[] {'{', '"'} );
+                    string cardsText = parts[1].Trim( new Char[] {'}', '"'} );
+
+                    myDictionary.Add(prefix, cardsText);                    
+                }
+            }
+
+
+            titleRef.Text = myDictionary["TitleCard"];
+            contentRef.Text = myDictionary["ContentCard"];
         }
 
     }

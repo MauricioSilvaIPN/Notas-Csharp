@@ -80,6 +80,6 @@ public partial class MainWindow : Window
         var dataJson = new JsonSave();
         
 
-        dataJson.LoadData(cardsContainer.TitleCard, cardsContainer.ContentCard);
+        dataJson.LoadData(Title, Content);
     }
 }
