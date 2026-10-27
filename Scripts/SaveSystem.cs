@@ -19,7 +19,7 @@ public class JsonSave
     string fileName = "savingData.json";
     Dictionary<string, string> myDictionary = new Dictionary<string, string>();
 
-    public void SavingData(string titleRef, string contentRef)
+    public void SaveData(string titleRef, string contentRef)
     {
         //List<CardsContent> cardsContent = new List<CardsContent>();
 
