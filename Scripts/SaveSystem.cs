@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using System.Collections.Generic;
 using System;
 using System.IO;
+using System.Text;
 
 
 namespace SaveLoad;
@@ -17,12 +18,9 @@ public class CardsContent
 public class JsonSave
 {
     string fileName = "savingData.json";
-    Dictionary<string, string> myDictionary = new Dictionary<string, string>();
 
     public void SaveData(string titleRef, string contentRef)
     {
-        //List<CardsContent> cardsContent = new List<CardsContent>();
-
         var cardsContent = new CardsContent()
         {
             TitleCard = titleRef,
@@ -30,34 +28,24 @@ public class JsonSave
         };
 
         string jsonString = JsonSerializer.Serialize(cardsContent);
-        File.WriteAllText(fileName, jsonString);
+        File.WriteAllText(fileName, jsonString, Encoding.UTF8);
 
-        Console.WriteLine(File.ReadAllText(fileName));
+        //Console.WriteLine(File.ReadAllText(fileName));
     }
 
     public void LoadData(TextBox titleRef, TextBox contentRef)
     {
         if (File.Exists(fileName))
         {
-            var fileContent = File.ReadAllText(fileName);
+            var fileContent = File.ReadAllText(fileName, Encoding.UTF8);
+            CardsContent? cardsContent = 
+            JsonSerializer.Deserialize<CardsContent>(fileContent);
 
-            if (fileContent.Contains(','))
+            if (cardsContent != null)
             {
-                string[] firstSeparate = fileContent.Split(",");
-                
-                for(int i = 0; i < firstSeparate.Length; i++)
-                {
-                    string[] parts = firstSeparate[i].Split(":");
-                    string prefix = parts[0].Trim( new Char[] {'{', '"'} );
-                    string cardsText = parts[1].Trim( new Char[] {'}', '"'} );
-
-                    myDictionary.Add(prefix, cardsText);                    
-                }
+                titleRef.Text = $"{cardsContent.TitleCard}";
+                contentRef.Text = $"{cardsContent.ContentCard}";    
             }
-
-
-            titleRef.Text = myDictionary["TitleCard"];
-            contentRef.Text = myDictionary["ContentCard"];
         }
 
     }

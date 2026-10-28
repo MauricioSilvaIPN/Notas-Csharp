@@ -52,7 +52,6 @@ public partial class MainWindow : Window
 
                 if (cardsContainer.TitleCard != null && cardsContainer.ContentCard != null)
                 {
-                    Console.WriteLine("GOOOOOL");
                     dataJson.SaveData(cardsContainer.TitleCard, cardsContainer.ContentCard);
                 }
             });

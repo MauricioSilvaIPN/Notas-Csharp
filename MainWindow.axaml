@@ -15,9 +15,9 @@
 
             <StackPanel>
                 <Grid x:Name="ContainerNotes" ColumnDefinitions="Auto, Auto, Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <StackPanel Grid.Column="0" Grid.Row="0" x:Name="Notes" Orientation="Vertical" HorizontalAlignment="Center" Margin="0, 0, 15, 15">
+                    <StackPanel Grid.Column="0" Grid.Row="0" x:Name="Notes" Orientation="Vertical" HorizontalAlignment="Center">
                         <TextBox x:Name="Title" Width="700" PlaceholderText="Insira um título para sua nota..." TextChanged="WrittingData"></TextBox>
-                        <TextBox x:Name="Content" Width="700" Height="450" PlaceholderText="Insira qualquer informação para sua nota..." TextChanged="WrittingData"></TextBox>
+                        <TextBox x:Name="Content" AcceptsReturn="True" TextWrapping="Wrap" Width="700" Height="450" PlaceholderText="Insira qualquer informação para sua nota..." TextChanged="WrittingData"></TextBox>
                     </StackPanel>
                 </Grid>
             </StackPanel>
