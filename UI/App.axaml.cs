@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 
-namespace Notas_Csharp;
+namespace Notas_Csharp.UI;
 
 public partial class App : Application
 {

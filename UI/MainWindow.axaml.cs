@@ -5,7 +5,7 @@ using Avalonia.Interactivity;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Notas_Csharp;
+namespace Notas_Csharp.UI;
 
 public partial class MainWindow : Window
 {
@@ -25,7 +25,7 @@ public partial class MainWindow : Window
         var dataJson = new JsonSave();
         
 
-        dataJson.LoadData(Title, Content);
+        dataJson.LoadData(NoteTitle, NoteContent);
     }
 
 
@@ -44,8 +44,8 @@ public partial class MainWindow : Window
             {
                 var cardsContainer = new CardsContent()
                 {
-                    TitleCard = Title.Text,
-                    ContentCard = Content.Text
+                    TitleCard = NoteTitle.Text,
+                    ContentCard = NoteContent.Text
                 };
 
                 var dataJson = new JsonSave();
